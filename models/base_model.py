@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """base_model.py module"""
 import uuid
+import datetime
 
 class BaseModel():
     """
@@ -8,7 +9,9 @@ class BaseModel():
     ----------------
     It defines all common attributes/methods
     for the other classes.
+    
     """
+    now = datetime.datetime.now()
 
     def __init__(self, id=None):
         """
@@ -16,10 +19,11 @@ class BaseModel():
 
         Arguments:
         ---------
-        id [object] -- UUID generated with python uuid.
+        id [str] -- UUID generated with python uuid.
         """
-        self.id = uuid.uuid4()
+        self.id = str(uuid.uuid4())
+        self.created_at = BaseModel.now.strftime("%Y-%m-%dT%H:%M:%S.%f")
 
 
-juan = BaseModel()
-print(juan.id)
+pedro = BaseModel()
+print(pedro.created_at)

@@ -23,6 +23,13 @@ class BaseModel():
         """
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now()
+        self.updated_at = self.created_at
+
+    def __str__(self):
+        """str representation of the base class"""
+        msg = ("[{}] ({}) {}".format(self.__class__.__name__,
+               self.id, self.__dict__))
+        return msg
 
 
 pedro = BaseModel()

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """base_model.py module"""
 import uuid
-import datetime
+from datetime import datetime
 
 
 class BaseModel():
@@ -22,8 +22,8 @@ class BaseModel():
         id [str] -- UUID generated with python uuid.
         """
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = self.created_at
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
     def __str__(self):
         """str representation of the base class"""
@@ -31,8 +31,12 @@ class BaseModel():
                self.id, self.__dict__))
         return msg
 
+    def save(self):
+        self.updated_at = datetime.now()
 
-pedro = BaseModel()
-print(pedro.created_at)
-print(type(pedro.created_at))
-print(pedro.created_at.isoformat())
+    def to_dict(self):
+        new_dict = dict(self.__dict__)
+        new_dict["created_at"] = str(self.created_at.isoformat())
+        new_dict["updated_at"] = str(self.updated_at.isoformat())
+        new_dict["__class__"] = self.__class__.__name__
+        return (new_dict)

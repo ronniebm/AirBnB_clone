@@ -2,6 +2,7 @@
 """base_model.py module"""
 import uuid
 from datetime import datetime
+import models
 
 
 class BaseModel():
@@ -15,11 +16,14 @@ class BaseModel():
 
     def __init__(self, *args, **kwargs):
         """
-        This is the constructor.
+        Object constructor.
 
-        Arguments:
-        ---------
+        Attributes:
+        ----------
         id [str] -- UUID generated with python uuid.
+        created_at [datetime] -- contains datetime obj.
+        updated_at [datetime] -- contains datetime obj.
+        __class__ [str] -- BaseModel class.
         """
         if kwargs:
             for key, value in kwargs.items():
@@ -37,6 +41,9 @@ class BaseModel():
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
 
+            # calling method new(self) on storage (task5).
+            models.storage.new(self)
+
     def __str__(self):
         """str representation of the base class."""
         msg = ("[{}] ({}) {}".format(self.__class__.__name__,
@@ -49,6 +56,9 @@ class BaseModel():
         'self.udated_at'.
         """
         self.updated_at = datetime.now()
+
+        # calling save(self) method of storage (task5).
+        models.storage.save()
 
     def to_dict(self):
         """

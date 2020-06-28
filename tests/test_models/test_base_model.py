@@ -3,7 +3,7 @@
 import unittest
 import json
 
-from models import base_model
+from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
@@ -11,15 +11,26 @@ class TestBaseModel(unittest.TestCase):
 
     def test_doc_module(self):
         """Module documentation"""
-        doc = base_model.BaseModel.__doc__
+        doc = BaseModel.__doc__
         self.assertGreater(len(doc), 1)
 
     def test_doc_class(self):
         """BaseModel documentation"""
-        doc = base_model.BaseModel.__doc__
+        doc = BaseModel.__doc__
         self.assertGreater(len(doc), 1)
 
     def test_doc_constructor(self):
         """Constructor documentation"""
-        doc = base_model.BaseModel.__init__.__doc__
+        doc = BaseModel.__init__.__doc__
         self.assertGreater(len(doc), 1)
+
+    def test_first_task(self):
+        """Test creation of class"""
+        my_model = BaseModel()
+        self.assertIs(type(my_model), BaseModel)
+
+        second_model = BaseModel()
+        self.assertIs(type(second_model), BaseModel)
+
+if __name__ == '__main__':
+    unittest.main()

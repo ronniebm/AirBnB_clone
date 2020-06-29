@@ -57,7 +57,9 @@ class FileStorage():
                 new_dict = json.load(my_file)
 
             for key, value in new_dict.items():
-                FileStorage.__objects[key] = BaseModel(**value)
+                class_name = value.get('__class__')
+                obj = eval(class_name + '(**value)')
+                FileStorage.__objects[key] = obj
 
         except FileNotFoundError:
             pass

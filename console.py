@@ -9,6 +9,8 @@ class HBNBCommand(cmd.Cmd):
     """Simple command processor example."""
     prompt = '(hbnb) '
 
+    classes = {"BaseModel"}
+
     def do_EOF(self, line):
         """
         EOF [command]:
@@ -33,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
         if self.lastcmd:
             self.lastcmd = ""
             return self.onecmd('\n')
-    
+
     def do_create(self, line):
         """Creates a new instance of BaseModel,
         saves it (to the JSON file) and prints the id.
@@ -54,20 +56,21 @@ class HBNBCommand(cmd.Cmd):
         and id.
         Ex: $ show BaseModel 1234-1234-1234
         """
-        print(models.storage.__objects)
         args = line.split()
-        print(args)
+
         if len(args) == 0:
             print('** class name missing **')
-            return False
-        try:
-            if (len(args) == 1):
-                print('** instance id missing **')
-                return False
-        except NameError:
+        elif not args[0] in HBNBCommand.classes:
             print('** class doesn\'t exist **')
-
-
+        elif len(args) == 1:
+            print('** instance id missing **')
+        else:
+            objects = models.storage.all()
+            key_find = args[0] + '.' + args[1]
+            if key_find in objects:
+                print(objects[key_find])
+            else:
+                print('** no instance found **')
 
 
 if __name__ == '__main__':

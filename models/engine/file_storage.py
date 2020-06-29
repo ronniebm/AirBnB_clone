@@ -43,10 +43,7 @@ class FileStorage():
         """
         new_dict = {}
         for key, value in FileStorage.__objects.items():
-            if isinstance(value, dict):
-                new_dict[key] = value
-            else:
-                new_dict[key] = value.to_dict().copy()
+            new_dict[key] = value.to_dict().copy()
         with open(FileStorage.__file_path, mode='w') as my_file:
             json.dump(new_dict, my_file)
 

@@ -36,7 +36,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertGreater(len(doc), 1)
 
     def test_first_task(self):
-        """Test creation of class"""
+        """Test creation of class and to_dict"""
         my_model = BaseModel()
         self.assertIs(type(my_model), BaseModel)
         my_model.name = "Holberton"
@@ -58,6 +58,7 @@ class TestBaseModel(unittest.TestCase):
                 self.assertIs(type(my_model_json[key]), value)
 
     def test_base_types(self):
+        """Testing dict model"""
         second_model = BaseModel()
         self.assertIs(type(second_model), BaseModel)
         second_model.name = "Andres"
@@ -75,6 +76,19 @@ class TestBaseModel(unittest.TestCase):
             with self.subTest(key=key, value=value):
                 self.assertIn(key, second_model.__dict__)
                 self.assertIs(type(second_model.__dict__[key]), value)
+
+    def test_uuid(self):
+        """testing differents uuid"""
+        model = BaseModel()
+        model_2 = BaseModel()
+        self.assertNotEqual(model.id, model_2.id)
+
+    def test_datetime_model(self):
+        """testing datetime base model"""
+        model_3 = BaseModel()
+        model_4 = BaseModel()
+        self.assertNotEqual(model_3.created_at, model_3.updated_at)
+        self.assertNotEqual(model_3.created_at, model_4.created_at)
 
 if __name__ == '__main__':
     unittest.main()

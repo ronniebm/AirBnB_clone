@@ -68,8 +68,8 @@ class HBNBCommand(cmd.Cmd):
                 print(new_inst.id)
 
     def do_show(self, line):
-        """Prints the string representation of an instance based on the class name
-        and id.
+        """Prints the string representation of an instance
+        based on the class name and id.
         Ex: $ show BaseModel 1234-1234-1234
         """
         args = line.split()

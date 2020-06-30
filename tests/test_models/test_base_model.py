@@ -4,6 +4,7 @@ import unittest
 import json
 import pep8
 import datetime
+from time import sleep
 
 from models.base_model import BaseModel
 
@@ -89,6 +90,41 @@ class TestBaseModel(unittest.TestCase):
         model_4 = BaseModel()
         self.assertNotEqual(model_3.created_at, model_3.updated_at)
         self.assertNotEqual(model_3.created_at, model_4.created_at)
+
+    def test_string_representation(self):
+        """Test the magic method str"""
+        my_model = BaseModel()
+        my_model.name = "Holberton"
+        my_model.my_number = 89
+        id_model = my_model.id
+
+        expected = '[BaseModel] ({}) {}'\
+                   .format(id_model, my_model.__dict__)
+        self.assertEqual(str(my_model), expected)
+
+    def test_constructor_kwargs(self):
+        """Test constructor that has kwargs as attributes values"""
+        obj = BaseModel()
+        obj.name = "Holberton"
+        obj.my_number = 89
+        json_attributes = obj.to_dict()
+
+        obj2 = BaseModel(**json_attributes)
+
+        self.assertIsInstance(obj2, BaseModel)
+        self.assertIsInstance(json_attributes, dict)
+        self.assertIsNot(obj, obj2)
+
+    def test_save(self):
+        """Test save method"""
+        obj = BaseModel()
+        sleep(1)
+
+        now = datetime.datetime.now().replace(microsecond=0)
+        obj.save()
+
+        self.assertEqual(obj.updated_at.replace(microsecond=0),
+                         now)
 
 if __name__ == '__main__':
     unittest.main()

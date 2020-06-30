@@ -15,7 +15,7 @@ class HBNBCommand(cmd.Cmd):
     """Simple command processor example."""
     prompt = '(hbnb) '
 
-    classes = [
+    __classes = [
         "BaseModel",
         "User",
         "Amenity",
@@ -46,42 +46,39 @@ class HBNBCommand(cmd.Cmd):
         emptyline method, which is called when an empty
         line is entered in response to the prompt.
         """
-        if self.lastcmd:
-            self.lastcmd = ""
-            return self.onecmd('\n')
+        pass
 
     def do_create(self, line):
         """Creates a new instance of BaseModel,
         saves it (to the JSON file) and prints the id.
         Ex: $ create BaseModel
         """
-        args = line.split()
+        args = line.split(" ")
 
         if len(args) == 0:
             print("** class name missing **")
-        elif len(args) >= 1:
-            if args[0] not in HBNBCommand.classes:
-                print('** class doesn\'t exist **')
-            else:
-                new_inst = eval(args[0] + '()')
-                models.storage.save()
-                print(new_inst.id)
+        elif args[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+        else:
+            new_inst = eval(args[0] + '()')
+            models.storage.save()
+            print(new_inst.id)
 
     def do_show(self, line):
         """Prints the string representation of an instance
         based on the class name and id.
         Ex: $ show BaseModel 1234-1234-1234
         """
-        args = line.split()
+        args = line.split(" ")
+        objects = models.storage.all()
 
         if len(args) == 0:
             print('** class name missing **')
-        elif not args[0] in HBNBCommand.classes:
-            print('** class doesn\'t exist **')
+        elif not args[0] in HBNBCommand.__classes:
+            print("** class doesn't exist **")
         elif len(args) == 1:
             print('** instance id missing **')
         else:
-            objects = models.storage.all()
             key_find = args[0] + '.' + args[1]
             if key_find in objects:
                 print(objects[key_find])
@@ -93,20 +90,21 @@ class HBNBCommand(cmd.Cmd):
         (save the change into the JSON file).
         Ex: $ destroy BaseModel 1234-1234-1234
         """
-        args = line.split()
+        args = line.split(" ")
+        objects = models.storage.all()
 
         if len(args) == 0:
             print('** class name missing **')
-        elif not args[0] in HBNBCommand.classes:
-            print('** class doesn\'t exist **')
+        elif not args[0] in HBNBCommand.__classes:
+            print("** class doesn't exist **")
         elif len(args) == 1:
             print('** instance id missing **')
         else:
             key_find = args[0] + '.' + args[1]
-            try:
-                models.storage.all().pop(key_find)
+            if key_find in objects:
+                del objects[key_find]
                 models.storage.save()
-            except KeyError:
+            else:
                 print('** no instance found **')
 
     def do_all(self, line):
@@ -114,22 +112,23 @@ class HBNBCommand(cmd.Cmd):
         based or not on the class name.
         Ex: $ all BaseModel
         """
-        args = line.split()
+        args = line.split(" ")
+        objects = models.storage.all()
         new_list = []
 
         if len(args) == 0:
-            for keys in models.storage.all().values():
-                new_list.append(str(keys))
-            print('{}'.format(new_list))
+            for obj in objects.values():
+                new_list.append(obj.__str__())
+            print(new_list)
 
         elif len(args) == 1:
-            if args[0] in HBNBCommand.classes:
-                for keys in models.storage.all().values():
-                    if args[0] in HBNBCommand.classes:
-                        new_list.append(str(keys))
-                print('{}'.format(new_list))
+            if args[0] in HBNBCommand.__classes:
+                for obj in objects.values():
+                    if obj.__class__.__name__ == args[0]:
+                        new_list.append(obj.__str__())
+                print(new_list)
             else:
-                print('** class doesn\'t exist **')
+                print("** class doesn't exist **")
 
     def do_update(self, line):
         """
@@ -139,13 +138,13 @@ class HBNBCommand(cmd.Cmd):
         Ex: $ update BaseModel <valid id> attrib value
         """
         objects = models.storage.all()
-        args = line.split()
+        args = line.split(" ")
 
         if len(args) == 0:
             print("** class name missing **")
 
         elif len(args) == 1:
-            if args[0] not in HBNBCommand.classes:
+            if args[0] not in HBNBCommand.__classes:
                 print("** class doesn't exist **")
             else:
                 print("** instance id missing **")

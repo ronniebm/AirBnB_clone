@@ -41,15 +41,17 @@ class HBNBCommand(cmd.Cmd):
         saves it (to the JSON file) and prints the id.
         Ex: $ create BaseModel
         """
-        if not line:
+        args = line.split()
+
+        if len(args) == 0:
             print("** class name missing **")
-            return False
-        try:
-            new_inst = eval(line + '()')
-            models.storage.save()
-            print(new_inst.id)
-        except NameError:
-            print('** class doesn\'t exist **')
+        elif len(args) >= 1:
+            if args[0] not in HBNBCommand.classes:
+                print('** class doesn\'t exist **')
+            else:
+                new_inst = eval(args[0] + '()')
+                models.storage.save()
+                print(new_inst.id)
 
     def do_show(self, line):
         """Prints the string representation of an instance based on the class name
@@ -100,10 +102,12 @@ class HBNBCommand(cmd.Cmd):
         """
         args = line.split()
         new_list = []
+
         if len(args) == 0:
             for keys in models.storage.all().values():
                 new_list.append(str(keys))
             print('{}'.format(new_list))
+
         elif len(args) == 1:
             if args[0] in HBNBCommand.classes:
                 for keys in models.storage.all().values():
@@ -112,6 +116,46 @@ class HBNBCommand(cmd.Cmd):
                 print('{}'.format(new_list))
             else:
                 print('** class doesn\'t exist **')
+
+    def do_update(self, line):
+        """
+        Updates an instance based on the class name
+        and id by adding or updating attribute (save
+        the change into the JSON file).
+        Ex: $ update BaseModel <valid id> attrib value
+        """
+        objects = models.storage.all()
+        args = line.split()
+
+        if len(args) == 0:
+            print("** class name missing **")
+
+        elif len(args) == 1:
+            if args[0] not in HBNBCommand.classes:
+                print("** class doesn't exist **")
+            else:
+                print("** instance id missing **")
+
+        elif len(args) == 2:
+            key_find = args[0] + '.' + args[1]
+            if key_find not in objects:
+                print('** no instance found **')
+            else:
+                print("** attribute name missing **")
+
+        elif len(args) == 3:
+            print("** value missing **")
+
+        elif len(args) >= 4:
+            obj = objects[args[0] + '.' + args[1]]
+
+            if args[2] in obj.__dict__:
+                val_type = type(obj.__dict__[args[2]])
+                obj.__dict__[args[2]] = eval(args[3])
+            else:
+                obj.__dict__[args[2]] = eval(args[3])
+
+        models.storage.save()
 
 
 if __name__ == '__main__':

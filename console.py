@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
 
         if len(args) == 0:
             print("** class name missing **")
-        elif not args[0] in HBNBCommand.__classes:
+        elif args[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
             new_inst = eval(args[0] + '()')
@@ -96,11 +96,10 @@ class HBNBCommand(cmd.Cmd):
 
         if len(args) == 0:
             print('** class name missing **')
+        elif args[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
         elif len(args) == 1:
-            if args[0] not in HBNBCommand.__classes:
-                print("** class doesn't exist **")
-            else:
-                print('** instance id missing **')
+            print('** instance id missing **')
         else:
             key_find = args[0] + '.' + args[1]
             if key_find in objects.keys():

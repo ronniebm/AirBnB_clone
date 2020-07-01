@@ -1,5 +1,5 @@
 # AirBnB clone - The console
-<p align="center"><img src= "https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20200701%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200701T183856Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=43c3d3a8584a2ab18c0a5e0021d8f746752e1bf584fb31ac5ba03b9b1bfcaa3e"/></p>
+<p align="center"><img src= "https://imgur.com/a/Ej5mveI"/></p>
 
 ## :bookmark\_tabs: Description
 Command interpreter to manage your AirBnB objects.
@@ -75,4 +75,85 @@ Quit command to exit the program
 ```
 
 ### Examples
+
+#### help example
+
+```
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  User  all  create  destroy  help  quit  show  update
+
+(hbnb)
+
+```
+
+```
+(hbnb) help create
+Creates a new instance of BaseModel,
+        saves it (to the JSON file) and prints the id.
+        Ex: $ create BaseModel
+
+(hbnb)
+```
+#### create example
+
+```
+
+(hbnb) create BaseModel
+0dfdc101-0895-44fc-88cd-4b21bb1dc32a
+(hbnb)
+
+```
+
+#### quit and EOF example
+
+Quit and EOF commands stops the execution of the program
+
+```
+(hbnb) quit
+
+```
+
+```
+(hbnb) EOF
+
+```
+
+#### show example
+
+```
+(hbnb) show BaseModel 0dfdc101-0895-44fc-88cd-4b21bb1dc32a
+\[BaseModel\] (0dfdc101-0895-44fc-88cd-4b21bb1dc32a) {'id': '0dfdc101-0895-44fc-88cd-4b21bb1dc32a', 'created\_at': datetime.datetime(2020, 7, 1, 16, 3, 59, 173753), 'updated\_at': datetime.datetime(2020, 7, 1, 16, 3, 59, 173761)}
+
+```
+
+#### destroy example
+
+```
+(hbnb) destroy BaseModel 0dfdc101-0895-44fc-88cd-4b21bb1dc32a
+(hbnb) show BaseModel 0dfdc101-0895-44fc-88cd-4b21bb1dc32a
+** no instance found **
+(hbnb) 
+```
+
+#### all example
+
+```
+(hbnb) all BaseModel
+\["\[BaseModel] (49faff9a-6318-451f-87b6-910505c55907) {'created\_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903293), 'id': '49faff9a-6318-451f-87b6-910505c55907', 'updated\_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903300)}"]
+
+```
+
+#### update example
+
+```
+(hbnb) update BaseModel 49faff9a-6318-451f-87b6-910505c55907 first\_name "Betty"
+(hbnb) show BaseModel 49faff9a-6318-451f-87b6-910505c55907
+\[BaseModel\] (49faff9a-6318-451f-87b6-910505c55907) {'first\_name': 'Betty', 'id': '49faff9a-6318-451f-87b6-910505c55907', 'created\_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903293), 'updated\_at': datetime.datetime(2017, 10, 2, 3, 11, 3, 49401)}
+```
+
+## :octocat: Contributors 
+[@AndresHugueth - Github](https://github.com/andreshugueth) - [@RonnieBarrios - Github](https://github.com/ronniebm)
 

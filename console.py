@@ -161,14 +161,28 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 3:
             print("** value missing **")
 
-        elif len(args) >= 4:
-            obj = objects[args[0] + '.' + args[1]]
+        elif len(args) == 4:
+            key_find = args[0] + '.' + args[1]
+            obj = objects[key_find]
 
-            if args[2] in obj.__dict__:
+            if args[2] in obj.__dict__.keys():
                 val_type = type(obj.__dict__[args[2]])
-                obj.__dict__[args[2]] = eval(args[3])
+                obj.__dict__[args[2]] = val_type(args[3])
             else:
                 obj.__dict__[args[2]] = eval(args[3])
+
+        elif type(eval(args[2])) == dict:
+            key_find = args[0] + '.' + args[1]
+            obj = objects[key_find]
+            val_type = type(obj.__dict__[args[2]])
+
+            for key, value in eval(args[2]).items():
+                if (key in obj.__dict__.keys() and
+                    type(obj.__dict__[key]) in {str, int, float}):
+                    val_type = type(obj.__dict__[key])
+                    obj.__dict__[key] = val_type(value)
+                else:
+                    obj.__dict__[key] = value
 
         models.storage.save()
 

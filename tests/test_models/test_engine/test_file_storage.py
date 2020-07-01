@@ -73,12 +73,18 @@ class TestFileStorage(unittest.TestCase):
         status = os.path.exists(f._FileStorage__file_path)
         self.assertTrue(status)
 
-        print("-- Create a new object --")
         my_model = BaseModel()
         my_model.name = "Holberton"
         my_model.my_number = 89
         my_model.save()
-        print(my_model)
+
+    def test_file_existence(self):
+        """
+        Checks if methods from Storage Engine works.
+        """
+
+        with open("file.json") as f:
+            self.assertTrue(len(f.read()) > 0)
 
 if __name__ == '__main__':
     unittest.main()

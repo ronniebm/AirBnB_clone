@@ -164,6 +164,15 @@ class TestFileStorage(unittest.TestCase):
         self.assertNotEqual(self.b1.created_at,
                             self.b1.updated_at)
 
+    def test_new(self):
+        """check the new user"""
+        obj = self.storage.all()
+        self.u1.id = 1234
+        self.u1.name = "Julien"
+        self.storage.new(self.u1)
+        key = "{}.{}".format(self.u1.__class__.__name__, self.u1.id)
+        self.assertIsNotNone(obj[key])
+
 
 if __name__ == '__main__':
     unittest.main()

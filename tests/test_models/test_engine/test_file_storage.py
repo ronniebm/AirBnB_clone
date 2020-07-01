@@ -4,6 +4,8 @@ import unittest
 import json
 import pep8
 import models
+import os
+import sys
 
 from models.engine.file_storage import FileStorage
 
@@ -59,6 +61,24 @@ class TestFileStorage(unittest.TestCase):
         f = FileStorage()
 
         self.assertIsInstance(f.all(), dict)
+
+    def test_example(self):
+        """Checks the methods reload and save"""
+        # Needs to be implemented
+        from models import storage
+        from models.base_model import BaseModel
+
+        f = FileStorage()
+        storage.all()
+        status = os.path.exists(f._FileStorage__file_path)
+        self.assertTrue(status)
+
+        print("-- Create a new object --")
+        my_model = BaseModel()
+        my_model.name = "Holberton"
+        my_model.my_number = 89
+        my_model.save()
+        print(my_model)
 
 if __name__ == '__main__':
     unittest.main()

@@ -179,8 +179,8 @@ class HBNBCommand(cmd.Cmd):
             HBNBCommand.do_all(HBNBCommand, class_name)
 
     def do_BaseModel(self, line):
-        """Retrieve all instances of User class.
-        Ex: $ User.all()
+        """Retrieve all instances of BaseModel class.
+        Ex: $ BaseModel.all()
         """
         objects = models.storage.all()
         class_name = "BaseModel"
@@ -190,6 +190,17 @@ class HBNBCommand(cmd.Cmd):
         if "(" and ")" in line and method == "all":
             HBNBCommand.do_all(HBNBCommand, class_name)
 
+    def do_Amenity(self, line):
+        """Retrieve all instances of Amenity class.
+        Ex: $ Amenity.all()
+        """
+        objects = models.storage.all()
+        class_name = "Amenity"
+        method = line.split(".")[1].split("(")[0]
+        new_list = []
+
+        if "(" and ")" in line and method == "all":
+            HBNBCommand.do_all(HBNBCommand, class_name)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

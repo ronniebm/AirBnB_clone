@@ -184,7 +184,7 @@ class HBNBCommand(cmd.Cmd):
                      new_list.append(obj.)
              print(new_list)
             """
-            HBNBCommand.do_all(self, class_name)
+            HBNBCommand.do_all(HBNBCommand, class_name)
 
 
 if __name__ == '__main__':

@@ -17,7 +17,6 @@ class HBNBCommand(cmd.Cmd):
 
     __classes = [
         "BaseModel",
-        "AuxModel",
         "User",
         "Amenity",
         "City",
@@ -168,22 +167,27 @@ class HBNBCommand(cmd.Cmd):
             models.storage.save()
 
     def do_User(self, line):
-        """Deletes an instance based on the class name and id
-        (save the change into the JSON file).
-        Ex: $ destroy BaseModel 1234-1234-1234
+        """Retrieve all instances of User class.
+        Ex: $ User.all()
         """
         objects = models.storage.all()
         class_name = "User"
         method = line.split(".")[1].split("(")[0]
         new_list = []
 
-        if method == "all":
-            """
-            for obj in objects.values():
-                 if obj.__class__.__name__ == class_name:
-                     new_list.append(obj.)
-             print(new_list)
-            """
+        if "(" and ")" in line and method == "all":
+            HBNBCommand.do_all(HBNBCommand, class_name)
+
+    def do_BaseModel(self, line):
+        """Retrieve all instances of User class.
+        Ex: $ User.all()
+        """
+        objects = models.storage.all()
+        class_name = "BaseModel"
+        method = line.split(".")[1].split("(")[0]
+        new_list = []
+
+        if "(" and ")" in line and method == "all":
             HBNBCommand.do_all(HBNBCommand, class_name)
 
 

@@ -77,5 +77,6 @@ class TestModels(unittest.TestCase):
         self.assertNotEqual(self.my_model.created_at,
                             self.my_model.updated_at)
 
+
 if __name__ == '__main__':
     unittest.main()

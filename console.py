@@ -119,18 +119,17 @@ class HBNBCommand(cmd.Cmd):
 
         if len(args) == 0:
             for obj in objects.values():
-                new_lis
-                t.append(obj.__str__())
+                new_list.append(obj.__str__())
             print(new_list)
 
-        elif len(args) == 1:
-            if args[0] in HBNBCommand.__classes:
-                for obj in objects.values():
-                    if obj.__class__.__name__ == args[0]:
-                        new_list.append(obj.__str__())
-                print(new_list)
-            else:
-                print("** class doesn't exist **")
+        elif args[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+
+        else:
+            for obj in objects.values():
+                if obj.__class__.__name__ == args[0]:
+                    new_list.append(obj.__str__())
+            print(new_list)
 
     def do_update(self, line):
         """

@@ -24,9 +24,11 @@ class TestFileStorage(unittest.TestCase):
                          "Found code style errors (and warnings).")
 
     def test_pep8_conformance_test_file_storage(self):
-        """Test that tests/test_file_storage.py conforms to PEP8."""
+        """Test that tests/test_models/test_engine/test_file_storage.py
+        conforms to PEP8."""
         pep8style = pep8.StyleGuide(quiet=True)
-        res = pep8style.check_files(['tests/test_file_storage.py'])
+        val = 'tests/test_models/test_engine/test_file_storage.py'
+        res = pep8style.check_files([val])
         self.assertEqual(res.total_errors, 0,
                          "Found code style errors (and warnings).")
 
@@ -34,6 +36,29 @@ class TestFileStorage(unittest.TestCase):
         """Constructor documentation"""
         doc = FileStorage.__init__.__doc__
         self.assertGreater(len(doc), 1)
+
+    def test_init(self):
+        """Test constructor"""
+        f = FileStorage()
+        obj, path = f._FileStorage__objects, f._FileStorage__file_path
+
+        self.assertIsInstance(obj, dict)
+        self.assertIsInstance(path, str)
+
+    def test_functions(self):
+        """Checks if the functions are defined"""
+        f = FileStorage()
+
+        self.assertTrue(hasattr(f, 'all'))
+        self.assertTrue(hasattr(f, 'new'))
+        self.assertTrue(hasattr(f, 'reload'))
+        self.assertTrue(hasattr(f, 'save'))
+
+    def test_all(self):
+        """Test method all"""
+        f = FileStorage()
+
+        self.assertIsInstance(f.all(), dict)
 
 if __name__ == '__main__':
     unittest.main()

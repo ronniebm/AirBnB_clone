@@ -202,5 +202,53 @@ class HBNBCommand(cmd.Cmd):
         if "(" and ")" in line and method == "all":
             HBNBCommand.do_all(HBNBCommand, class_name)
 
-if __name__ == '__main__':
-    HBNBCommand().cmdloop()
+    def do_City(self, line):
+        """Retrieve all instances of City class.
+        Ex: $ City.all()
+        """
+        objects = models.storage.all()
+        class_name = "City"
+        method = line.split(".")[1].split("(")[0]
+        new_list = []
+
+        if "(" and ")" in line and method == "all":
+            HBNBCommand.do_all(HBNBCommand, class_name)
+
+    def do_Place(self, line):
+        """Retrieve all instances of Place class.
+        Ex: $ Place.all()
+        """
+        objects = models.storage.all()
+        class_name = "Place"
+        method = line.split(".")[1].split("(")[0]
+        new_list = []
+
+        if "(" and ")" in line and method == "all":
+            HBNBCommand.do_all(HBNBCommand, class_name)
+
+    def do_Review(self, line):
+        """Retrieve all instances of Review class.
+        Ex: $ Review.all()
+        """
+        objects = models.storage.all()
+        class_name = "Review"
+        method = line.split(".")[1].split("(")[0]
+        new_list = []
+
+        if "(" and ")" in line and method == "all":
+            HBNBCommand.do_all(HBNBCommand, class_name)
+
+    def do_State(self, line):
+        """Retrieve all instances of State class.
+        Ex: $ State.all()
+        """
+        objects = models.storage.all()
+        class_name = "State"
+        method = line.split(".")[1].split("(")[0]
+        new_list = []
+
+        if "(" and ")" in line and method == "all":
+            HBNBCommand.do_all(HBNBCommand, class_name)
+
+    if __name__ == '__main__':
+        HBNBCommand().cmdloop()

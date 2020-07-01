@@ -117,10 +117,11 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save(self):
         """Test save method"""
+        from datetime import datetime
         obj = BaseModel()
         sleep(1)
 
-        now = datetime.datetime.now().replace(microsecond=0)
+        now = datetime.now().replace(microsecond=0)
         obj.save()
 
         self.assertEqual(obj.updated_at.replace(microsecond=0),

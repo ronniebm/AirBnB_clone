@@ -17,6 +17,7 @@ class HBNBCommand(cmd.Cmd):
 
     __classes = [
         "BaseModel",
+        "AuxModel",
         "User",
         "Amenity",
         "City",
@@ -53,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
         saves it (to the JSON file) and prints the id.
         Ex: $ create BaseModel
         """
-        args = line.split(" ")
+        args = line.split()
 
         if len(args) == 0:
             print("** class name missing **")
@@ -69,7 +70,7 @@ class HBNBCommand(cmd.Cmd):
         based on the class name and id.
         Ex: $ show BaseModel 1234-1234-1234
         """
-        args = line.split(" ")
+        args = line.split()
         objects = models.storage.all()
 
         if len(args) == 0:
@@ -80,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
             print('** instance id missing **')
         else:
             key_find = args[0] + '.' + args[1]
-            if key_find in objects:
+            if key_find in objects.keys():
                 print(objects[key_find])
             else:
                 print('** no instance found **')
@@ -90,19 +91,20 @@ class HBNBCommand(cmd.Cmd):
         (save the change into the JSON file).
         Ex: $ destroy BaseModel 1234-1234-1234
         """
-        args = line.split(" ")
+        args = line.split()
         objects = models.storage.all()
 
         if len(args) == 0:
             print('** class name missing **')
-        elif not args[0] in HBNBCommand.__classes:
-            print("** class doesn't exist **")
         elif len(args) == 1:
-            print('** instance id missing **')
+            if args[0] not in HBNBCommand.__classes:
+                print("** class doesn't exist **")
+            else:
+                print('** instance id missing **')
         else:
             key_find = args[0] + '.' + args[1]
-            if key_find in objects:
-                del objects[key_find]
+            if key_find in objects.keys():
+                objects.pop(key_find, None)
                 models.storage.save()
             else:
                 print('** no instance found **')
@@ -112,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
         based or not on the class name.
         Ex: $ all BaseModel
         """
-        args = line.split(" ")
+        args = line.split()
         objects = models.storage.all()
         new_list = []
 
@@ -137,8 +139,8 @@ class HBNBCommand(cmd.Cmd):
         the change into the JSON file).
         Ex: $ update BaseModel <valid id> attrib value
         """
+        args = line.split()
         objects = models.storage.all()
-        args = line.split(" ")
 
         if len(args) == 0:
             print("** class name missing **")
@@ -151,8 +153,8 @@ class HBNBCommand(cmd.Cmd):
 
         elif len(args) == 2:
             key_find = args[0] + '.' + args[1]
-            if key_find not in objects:
-                print('** no instance found **')
+            if key_find not in objects.keys():
+                print("** no instance found **")
             else:
                 print("** attribute name missing **")
 

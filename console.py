@@ -145,46 +145,28 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
 
+        elif args[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+
         elif len(args) == 1:
-            if args[0] not in HBNBCommand.__classes:
-                print("** class doesn't exist **")
-            else:
-                print("** instance id missing **")
+            print("** instance id missing **")
 
         elif len(args) == 2:
-            key_find = args[0] + '.' + args[1]
-            if key_find not in objects.keys():
-                print("** no instance found **")
-            else:
-                print("** attribute name missing **")
+            print("** attribute name missing **")
 
         elif len(args) == 3:
             print("** value missing **")
 
-        elif len(args) == 4:
+        else:
             key_find = args[0] + '.' + args[1]
-            obj = objects[key_find]
+            obj = objects.get(key_find, None)
 
-            if args[2] in obj.__dict__.keys():
-                val_type = type(obj.__dict__[args[2]])
-                obj.__dict__[args[2]] = val_type(args[3])
-            else:
-                obj.__dict__[args[2]] = eval(args[3])
+            if not obj:
+                print("** no instance found **")
+                return
 
-        elif type(eval(args[2])) == dict:
-            key_find = args[0] + '.' + args[1]
-            obj = objects[key_find]
-            val_type = type(obj.__dict__[args[2]])
-
-            for key, value in eval(args[2]).items():
-                if (key in obj.__dict__.keys() and
-                    type(obj.__dict__[key]) in {str, int, float}):
-                    val_type = type(obj.__dict__[key])
-                    obj.__dict__[key] = val_type(value)
-                else:
-                    obj.__dict__[key] = value
-
-        models.storage.save()
+            setattr(obj, args[2], args[3].lstrip('"').rstrip('"'))
+            models.storage.save()
 
 
 if __name__ == '__main__':

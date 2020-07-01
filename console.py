@@ -167,6 +167,25 @@ class HBNBCommand(cmd.Cmd):
             setattr(obj, args[2], args[3].lstrip('"').rstrip('"'))
             models.storage.save()
 
+    def do_User(self, line):
+        """Deletes an instance based on the class name and id
+        (save the change into the JSON file).
+        Ex: $ destroy BaseModel 1234-1234-1234
+        """
+        objects = models.storage.all()
+        class_name = "User"
+        method = line.split(".")[1].split("(")[0]
+        new_list = []
+
+        if method == "all":
+            """
+            for obj in objects.values():
+                 if obj.__class__.__name__ == class_name:
+                     new_list.append(obj.)
+             print(new_list)
+            """
+            HBNBCommand.do_all(self, class_name)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

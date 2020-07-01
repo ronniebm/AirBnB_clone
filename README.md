@@ -1,5 +1,5 @@
 # AirBnB clone - The console
-<p align="center"><img src= "https://imgur.com/a/Ej5mveI"/></p>
+![enter image description here](https://imgur.com/a/Ej5mveI)
 
 ## :bookmark\_tabs: Description
 Command interpreter to manage your AirBnB objects.

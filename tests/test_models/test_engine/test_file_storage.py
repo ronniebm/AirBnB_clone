@@ -135,15 +135,6 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json") as f:
             self.assertTrue(len(f.read()) > 0)
 
-    def test_new(self):
-        """check the new user"""
-        obj = self.storage.all()
-        self.u1.id = 1234
-        self.u1.name = "Julien"
-        self.storage.new(self.u1)
-        key = "{}.{}".format(self.u1.__class__.__name__, self.u1.id)
-        self.assertIsNotNone(obj[key])
-
     def test_docstrings(self):
         """Check the docString each function"""
 

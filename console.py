@@ -75,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
 
         if len(args) == 0:
             print('** class name missing **')
-        elif not args[0] in HBNBCommand.__classes:
+        elif args[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         elif len(args) == 1:
             print('** instance id missing **')
@@ -120,7 +120,8 @@ class HBNBCommand(cmd.Cmd):
 
         if len(args) == 0:
             for obj in objects.values():
-                new_list.append(obj.__str__())
+                new_lis
+                t.append(obj.__str__())
             print(new_list)
 
         elif len(args) == 1:

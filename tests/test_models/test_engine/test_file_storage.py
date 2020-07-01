@@ -135,5 +135,17 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json") as f:
             self.assertTrue(len(f.read()) > 0)
 
+    def test_docstrings(self):
+        """Check the docString each function"""
+
+        self.assertTrue(FileStorage.all.__doc__)
+        self.assertTrue(hasattr(FileStorage, 'all'))
+        self.assertTrue(FileStorage.new.__doc__)
+        self.assertTrue(hasattr(FileStorage, 'new'))
+        self.assertTrue(FileStorage.save.__doc__)
+        self.assertTrue(hasattr(FileStorage, 'save'))
+        self.assertTrue(FileStorage.reload.__doc__)
+        self.assertTrue(hasattr(FileStorage, 'reload'))
+
 if __name__ == '__main__':
     unittest.main()

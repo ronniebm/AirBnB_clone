@@ -8,6 +8,7 @@ import os
 import sys
 
 from models.engine.file_storage import FileStorage
+from models.__init__ import storage
 from models.base_model import BaseModel
 from models.amenity import Amenity
 from models.city import City
@@ -151,6 +152,17 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(hasattr(FileStorage, 'save'))
         self.assertTrue(FileStorage.reload.__doc__)
         self.assertTrue(hasattr(FileStorage, 'reload'))
+
+    def test_models_save(self):
+        """ Check if the save function works """
+        self.b1.name = "Hello"
+        self.storage.save()
+        storage.reload()
+        storage.all()
+        self.assertTrue(storage.all(), "Hello")
+        self.assertTrue(hasattr(self.b1, 'save'))
+        self.assertNotEqual(self.b1.created_at,
+                            self.b1.updated_at)
 
 if __name__ == '__main__':
     unittest.main()

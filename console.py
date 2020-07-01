@@ -175,8 +175,15 @@ class HBNBCommand(cmd.Cmd):
         method = line.split(".")[1].split("(")[0]
         new_list = []
 
-        if "(" and ")" in line and method == "all":
-            HBNBCommand.do_all(HBNBCommand, class_name)
+        if "(" and ")" in line:
+            if method == "all":
+                HBNBCommand.do_all(HBNBCommand, class_name)
+            elif method == "count":
+                counter = 0
+                for key in objects:
+                    if key.split(".")[0] == class_name:
+                        counter += 1
+                print(counter)
 
     def do_BaseModel(self, line):
         """Retrieve all instances of BaseModel class.
@@ -187,8 +194,15 @@ class HBNBCommand(cmd.Cmd):
         method = line.split(".")[1].split("(")[0]
         new_list = []
 
-        if "(" and ")" in line and method == "all":
-            HBNBCommand.do_all(HBNBCommand, class_name)
+        if "(" and ")" in line:
+            if method == "all":
+                HBNBCommand.do_all(HBNBCommand, class_name)
+            elif method == "count":
+                counter = 0
+                for key in objects:
+                    if key.split(".")[0] == class_name:
+                        counter += 1
+                print(counter)
 
     def do_Amenity(self, line):
         """Retrieve all instances of Amenity class.
@@ -199,8 +213,15 @@ class HBNBCommand(cmd.Cmd):
         method = line.split(".")[1].split("(")[0]
         new_list = []
 
-        if "(" and ")" in line and method == "all":
-            HBNBCommand.do_all(HBNBCommand, class_name)
+        if "(" and ")" in line:
+            if method == "all":
+                HBNBCommand.do_all(HBNBCommand, class_name)
+            elif method == "count":
+                counter = 0
+                for key in objects:
+                    if key.split(".")[0] == class_name:
+                        counter += 1
+                print(counter)
 
     def do_City(self, line):
         """Retrieve all instances of City class.
@@ -211,8 +232,15 @@ class HBNBCommand(cmd.Cmd):
         method = line.split(".")[1].split("(")[0]
         new_list = []
 
-        if "(" and ")" in line and method == "all":
-            HBNBCommand.do_all(HBNBCommand, class_name)
+        if "(" and ")" in line:
+            if method == "all":
+                HBNBCommand.do_all(HBNBCommand, class_name)
+            elif method == "count":
+                counter = 0
+                for key in objects:
+                    if key.split(".")[0] == class_name:
+                        counter += 1
+                print(counter)
 
     def do_Place(self, line):
         """Retrieve all instances of Place class.
@@ -223,8 +251,15 @@ class HBNBCommand(cmd.Cmd):
         method = line.split(".")[1].split("(")[0]
         new_list = []
 
-        if "(" and ")" in line and method == "all":
-            HBNBCommand.do_all(HBNBCommand, class_name)
+        if "(" and ")" in line:
+            if method == "all":
+                HBNBCommand.do_all(HBNBCommand, class_name)
+            elif method == "count":
+                counter = 0
+                for key in objects:
+                    if key.split(".")[0] == class_name:
+                        counter += 1
+                print(counter)
 
     def do_Review(self, line):
         """Retrieve all instances of Review class.
@@ -235,8 +270,15 @@ class HBNBCommand(cmd.Cmd):
         method = line.split(".")[1].split("(")[0]
         new_list = []
 
-        if "(" and ")" in line and method == "all":
-            HBNBCommand.do_all(HBNBCommand, class_name)
+        if "(" and ")" in line:
+            if method == "all":
+                HBNBCommand.do_all(HBNBCommand, class_name)
+            elif method == "count":
+                counter = 0
+                for key in objects:
+                    if key.split(".")[0] == class_name:
+                        counter += 1
+                print(counter)
 
     def do_State(self, line):
         """Retrieve all instances of State class.
@@ -247,8 +289,16 @@ class HBNBCommand(cmd.Cmd):
         method = line.split(".")[1].split("(")[0]
         new_list = []
 
-        if "(" and ")" in line and method == "all":
-            HBNBCommand.do_all(HBNBCommand, class_name)
+        if "(" and ")" in line:
+            if method == "all":
+                HBNBCommand.do_all(HBNBCommand, class_name)
+            elif method == "count":
+                counter = 0
+                for key in objects:
+                    if key.split(".")[0] == class_name:
+                        counter += 1
+                print(counter)
 
-    if __name__ == '__main__':
-        HBNBCommand().cmdloop()
+
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()

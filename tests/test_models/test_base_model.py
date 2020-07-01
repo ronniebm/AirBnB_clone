@@ -115,16 +115,13 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(json_attributes, dict)
         self.assertIsNot(obj, obj2)
 
-    def test_save(self):
-        """Test save method"""
-        obj = BaseModel()
-        sleep(1)
+    def test_file_save(self):
+        """Test that info is saved to file"""
+        b3 = BaseModel()
+        b3.save()
+        with open("file.json", 'r') as f:
+            self.assertIn(b3.id, f.read())
 
-        now = datetime.datetime.now().replace(microsecond=0)
-        obj.save()
-
-        self.assertEqual(obj.updated_at.replace(microsecond=0),
-                         now)
 
 if __name__ == '__main__':
     unittest.main()

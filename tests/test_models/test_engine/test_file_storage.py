@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-"""File Storage test"""
+""" Test case FileStorage module"""
 import unittest
-import json
-import pep8
-import models
 import os
-import sys
+import contextlib
+import json
+import models
+import pep8
 
+# class
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models.amenity import Amenity
@@ -16,60 +17,15 @@ from models.review import Review
 from models.state import State
 from models.user import User
 
-from models.engine.file_storage import FileStorage
-
 
 class TestFileStorage(unittest.TestCase):
-    """Test cases for FileStorage"""
+    """Test FileStorage"""
 
-    def test_doc_module(self):
-        """Module documentation"""
-        doc = FileStorage.__doc__
-        self.assertGreater(len(doc), 1)
-
-    def test_pep8_conformance_file_storage(self):
-        """Test that models/engine/file_storage.py conforms to PEP8."""
-        pep8style = pep8.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/engine/file_storage.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
-
-    def test_pep8_conformance_test_file_storage(self):
-        """Test that tests/test_models/test_engine/test_file_storage.py
-        conforms to PEP8."""
-        pep8style = pep8.StyleGuide(quiet=True)
-        val = 'tests/test_models/test_engine/test_file_storage.py'
-        res = pep8style.check_files([val])
-        self.assertEqual(res.total_errors, 0,
-                         "Found code style errors (and warnings).")
-
-    def test_doc_constructor(self):
-        """Constructor documentation"""
-        doc = FileStorage.__init__.__doc__
-        self.assertGreater(len(doc), 1)
-
-    def test_init(self):
-        """Test constructor"""
-        f = FileStorage()
-        obj, path = f._FileStorage__objects, f._FileStorage__file_path
-
-        self.assertIsInstance(obj, dict)
-        self.assertIsInstance(path, str)
-
-    def test_functions(self):
-        """Checks if the functions are defined"""
-        f = FileStorage()
-
-        self.assertTrue(hasattr(f, 'all'))
-        self.assertTrue(hasattr(f, 'new'))
-        self.assertTrue(hasattr(f, 'reload'))
-        self.assertTrue(hasattr(f, 'save'))
-
-    def test_all_first(self):
-        """Test method all"""
-        f = FileStorage()
-
-        self.assertIsInstance(f.all(), dict)
+    def test_pep8_FileStorage(self):
+        """Tests pep8 style"""
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/engine/file_storage.py'])
+        self.assertEqual(p.total_errors, 0, "fix pep8")
 
     def setUp(self):
         """Sets up the class test"""
@@ -119,6 +75,15 @@ class TestFileStorage(unittest.TestCase):
 
         self.assertEqual(dict, type(self.storage.all()))
 
+    def test_new(self):
+        """check the new user"""
+        obj = self.storage.all()
+        self.u1.id = 1234
+        self.u1.name = "Julien"
+        self.storage.new(self.u1)
+        key = '{}.{}'.format(self.u1.__class__.__name__, self.u1.id)
+        self.assertIsNotNone(obj[key])
+
     def test_check_json_loading(self):
         """ Checks if methods from Storage Engine works."""
 
@@ -146,6 +111,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(hasattr(FileStorage, 'save'))
         self.assertTrue(FileStorage.reload.__doc__)
         self.assertTrue(hasattr(FileStorage, 'reload'))
+
 
 if __name__ == '__main__':
     unittest.main()

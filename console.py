@@ -169,8 +169,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             key_find = args[0] + '.' + args[1]
             obj = objects.get(key_find)
-            kwargs = eval("{" + line.split("{")[1].split("}")[0]
-                        + "}")
+            kwargs = eval("{" + line.split("{")[1].split("}")[0] +
+                          "}")
             if obj is None:
                 print("** no instance found **")
                 return

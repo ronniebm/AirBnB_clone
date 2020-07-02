@@ -207,6 +207,20 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         objects.pop(key, None)
                         models.storage.save()
+            elif method == "update":
+                if '"' not in line and "," not in line:
+                    pass
+                else:
+                    obj_id = line.split('"')[1]
+                    key = class_name + "." + obj_id
+                    value = objects.get(key)
+                    attr = line.split(",")[1].split('"')[1]
+                    new_val = line.split(",")[2].split('"')[1]
+                    args = class_name + " "+obj_id+" "+attr+" "+new_val
+                    if value is None:
+                        print("** no instance found **")
+                    else:
+                        HBNBCommand.do_update(HBNBCommand, args)
 
     def do_BaseModel(self, line):
         """Retrieve all instances of BaseModel class.
@@ -248,6 +262,20 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         objects.pop(key, None)
                         models.storage.save()
+            elif method == "update":
+                if '"' not in line and "," not in line:
+                    pass
+                else:
+                    obj_id = line.split('"')[1]
+                    key = class_name + "." + obj_id
+                    value = objects.get(key)
+                    attr = line.split(",")[1].split('"')[1]
+                    new_val = line.split(",")[2].split('"')[1]
+                    args = class_name + " "+obj_id+" "+attr+" "+new_val
+                    if value is None:
+                        print("** no instance found **")
+                    else:
+                        HBNBCommand.do_update(HBNBCommand, args)
 
     def do_Amenity(self, line):
         """Retrieve all instances of Amenity class.
@@ -289,6 +317,20 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         objects.pop(key, None)
                         models.storage.save()
+            elif method == "update":
+                if '"' not in line and "," not in line:
+                    pass
+                else:
+                    obj_id = line.split('"')[1]
+                    key = class_name + "." + obj_id
+                    value = objects.get(key)
+                    attr = line.split(",")[1].split('"')[1]
+                    new_val = line.split(",")[2].split('"')[1]
+                    args = class_name + " "+obj_id+" "+attr+" "+new_val
+                    if value is None:
+                        print("** no instance found **")
+                    else:
+                        HBNBCommand.do_update(HBNBCommand, args)
 
     def do_City(self, line):
         """Retrieve all instances of City class.
@@ -330,6 +372,20 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         objects.pop(key, None)
                         models.storage.save()
+            elif method == "update":
+                if '"' not in line and "," not in line:
+                    pass
+                else:
+                    obj_id = line.split('"')[1]
+                    key = class_name + "." + obj_id
+                    value = objects.get(key)
+                    attr = line.split(",")[1].split('"')[1]
+                    new_val = line.split(",")[2].split('"')[1]
+                    args = class_name + " "+obj_id+" "+attr+" "+new_val
+                    if value is None:
+                        print("** no instance found **")
+                    else:
+                        HBNBCommand.do_update(HBNBCommand, args)
 
     def do_Place(self, line):
         """Retrieve all instances of Place class.
@@ -371,6 +427,20 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         objects.pop(key, None)
                         models.storage.save()
+            elif method == "update":
+                if '"' not in line and "," not in line:
+                    pass
+                else:
+                    obj_id = line.split('"')[1]
+                    key = class_name + "." + obj_id
+                    value = objects.get(key)
+                    attr = line.split(",")[1].split('"')[1]
+                    new_val = line.split(",")[2].split('"')[1]
+                    args = class_name + " "+obj_id+" "+attr+" "+new_val
+                    if value is None:
+                        print("** no instance found **")
+                    else:
+                        HBNBCommand.do_update(HBNBCommand, args)
 
     def do_Review(self, line):
         """Retrieve all instances of Review class.
@@ -412,6 +482,20 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         objects.pop(key, None)
                         models.storage.save()
+            elif method == "update":
+                if '"' not in line and "," not in line:
+                    pass
+                else:
+                    obj_id = line.split('"')[1]
+                    key = class_name + "." + obj_id
+                    value = objects.get(key)
+                    attr = line.split(",")[1].split('"')[1]
+                    new_val = line.split(",")[2].split('"')[1]
+                    args = class_name + " "+obj_id+" "+attr+" "+new_val
+                    if value is None:
+                        print("** no instance found **")
+                    else:
+                        HBNBCommand.do_update(HBNBCommand, args)
 
     def do_State(self, line):
         """Retrieve all instances of State class.
@@ -453,6 +537,20 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         objects.pop(key, None)
                         models.storage.save()
+            elif method == "update":
+                if '"' not in line and "," not in line:
+                    pass
+                else:
+                    obj_id = line.split('"')[1]
+                    key = class_name + "." + obj_id
+                    value = objects.get(key)
+                    attr = line.split(",")[1].split('"')[1]
+                    new_val = line.split(",")[2].split('"')[1]
+                    args = class_name + " "+obj_id+" "+attr+" "+new_val
+                    if value is None:
+                        print("** no instance found **")
+                    else:
+                        HBNBCommand.do_update(HBNBCommand, args)
 
 
 if __name__ == '__main__':

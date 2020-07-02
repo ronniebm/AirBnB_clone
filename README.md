@@ -2,11 +2,11 @@
 ![enter image description here](https://i.imgur.com/44u0pXG.png)
 
 ## :clipboard: Table of Content
-* [Description](#Description)
-* [Requirements](#Requirements)
-* [Command Interpreter](#Command-Interpreter)
-* [Examples](#Examples)
-* [Contributors](#Contributors)
+* [Description](#bookmark_tabs-description)
+* [Requirements](#straight_ruler-requirements)
+* [Command Interpreter](#computer-command-interpreter)
+* [Examples](#flashlight-examples)
+* [Contributors](#octocat-contributors)
 
 ## :bookmark\_tabs: Description
 Command interpreter to manage your AirBnB objects.
@@ -184,7 +184,7 @@ $
 [BaseModel] (49faff9a-6318-451f-87b6-910505c55907) {'first_name': 'Betty', 'id': '49faff9a-6318-451f-87b6-910505c55907', 'created_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903293), 'updated_at': datetime.datetime(2017, 10, 2, 3, 11, 3, 49401)}
 ```
 
-### <class name>.actions() examples
+### `<class name>.actions()` examples
 `actions = [show, destroy, all, update, count]`
 
 * `<class>.all()` example

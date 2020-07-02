@@ -156,7 +156,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 3:
             print("** value missing **")
 
-        else:
+        elif "{" not in line and "}" not in line:
             key_find = args[0] + '.' + args[1]
             obj = objects.get(key_find, None)
 
@@ -165,6 +165,17 @@ class HBNBCommand(cmd.Cmd):
                 return
 
             setattr(obj, args[2], args[3].lstrip('"').rstrip('"'))
+            models.storage.save()
+        else:
+            key_find = args[0] + '.' + args[1]
+            obj = objects.get(key_find)
+            kwargs = eval("{" + line.split("{")[1].split("}")[0]
+                        + "}")
+            if obj is None:
+                print("** no instance found **")
+                return
+            for key, val in kwargs.items():
+                setattr(obj, key, val)
             models.storage.save()
 
     def do_User(self, line):
@@ -210,7 +221,7 @@ class HBNBCommand(cmd.Cmd):
             elif method == "update":
                 if '"' not in line and "," not in line:
                     pass
-                else:
+                elif "{" not in line and "}" not in line:
                     obj_id = line.split('"')[1]
                     key = class_name + "." + obj_id
                     value = objects.get(key)
@@ -221,6 +232,13 @@ class HBNBCommand(cmd.Cmd):
                         print("** no instance found **")
                     else:
                         HBNBCommand.do_update(HBNBCommand, args)
+                else:
+                    obj_id = line.split('"')[1]
+                    new_dict_str = line.split("{")[1].split("}")[0]
+                    new_dict_str = "{" + new_dict_str + "}"
+                    args = class_name + " "+obj_id+" "+new_dict_str
+
+                    HBNBCommand.do_update(HBNBCommand, args)
 
     def do_BaseModel(self, line):
         """Retrieve all instances of BaseModel class.
@@ -265,7 +283,7 @@ class HBNBCommand(cmd.Cmd):
             elif method == "update":
                 if '"' not in line and "," not in line:
                     pass
-                else:
+                elif "{" not in line and "}" not in line:
                     obj_id = line.split('"')[1]
                     key = class_name + "." + obj_id
                     value = objects.get(key)
@@ -276,6 +294,13 @@ class HBNBCommand(cmd.Cmd):
                         print("** no instance found **")
                     else:
                         HBNBCommand.do_update(HBNBCommand, args)
+                else:
+                    obj_id = line.split('"')[1]
+                    new_dict_str = line.split("{")[1].split("}")[0]
+                    new_dict_str = "{" + new_dict_str + "}"
+                    args = class_name + " "+obj_id+" "+new_dict_str
+
+                    HBNBCommand.do_update(HBNBCommand, args)
 
     def do_Amenity(self, line):
         """Retrieve all instances of Amenity class.
@@ -320,7 +345,7 @@ class HBNBCommand(cmd.Cmd):
             elif method == "update":
                 if '"' not in line and "," not in line:
                     pass
-                else:
+                elif "{" not in line and "}" not in line:
                     obj_id = line.split('"')[1]
                     key = class_name + "." + obj_id
                     value = objects.get(key)
@@ -331,6 +356,13 @@ class HBNBCommand(cmd.Cmd):
                         print("** no instance found **")
                     else:
                         HBNBCommand.do_update(HBNBCommand, args)
+                else:
+                    obj_id = line.split('"')[1]
+                    new_dict_str = line.split("{")[1].split("}")[0]
+                    new_dict_str = "{" + new_dict_str + "}"
+                    args = class_name + " "+obj_id+" "+new_dict_str
+
+                    HBNBCommand.do_update(HBNBCommand, args)
 
     def do_City(self, line):
         """Retrieve all instances of City class.

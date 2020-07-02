@@ -30,30 +30,52 @@ This is the first step towards building your first full web application: the Air
 
 If you want to run the command interpreter follow the next steps:
 
-* Clone the repository
+* Clone the repository:
 
 ```
 git clone https://github.com/ronniebm/AirBnB_clone.git
 ```
-* Execute the following command
+* Execute the following command:
 
 ```
-./console
+$ ./console
+```
 
+* You can also execute in non-interactive mode:
+```
+$ echo "help" | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb) 
+$
+$ cat test_help
+help
+$
+$ cat test_help | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb) 
+$
 ```
 
 ### Usage
 
 After you execute the console you can use the following commands:
 
-* help
-* quit
-* EOF
-* create
-* show
-* detroy
-* all
-* update
+* help - Gives a little description of a command
+* quit - Exit the program
+* EOF - Exit the program
+* create - Creates a new instance
+* show - Prints the string representation of an instance based on the class name and id
+* detroy - Deletes an instance based on the class name and id
+* all - Prints all string representation of all instances based or not on the class name
+* update - Updates an instance based on the class name and id by adding or updating attribute
 
 #### Usage Example
 
@@ -113,20 +135,19 @@ Quit and EOF commands stops the execution of the program
 
 ```
 (hbnb) quit
-
+$
 ```
 
 ```
 (hbnb) EOF
-
+$
 ```
 
 #### show example
 
 ```
 (hbnb) show BaseModel 0dfdc101-0895-44fc-88cd-4b21bb1dc32a
-\[BaseModel\] (0dfdc101-0895-44fc-88cd-4b21bb1dc32a) {'id': '0dfdc101-0895-44fc-88cd-4b21bb1dc32a', 'created\_at': datetime.datetime(2020, 7, 1, 16, 3, 59, 173753), 'updated\_at': datetime.datetime(2020, 7, 1, 16, 3, 59, 173761)}
-
+[BaseModel] (0dfdc101-0895-44fc-88cd-4b21bb1dc32a) {'id': '0dfdc101-0895-44fc-88cd-4b21bb1dc32a', 'created\_at': datetime.datetime(2020, 7, 1, 16, 3, 59, 173753), 'updated\_at': datetime.datetime(2020, 7, 1, 16, 3, 59, 173761)}
 ```
 
 #### destroy example
@@ -142,18 +163,17 @@ Quit and EOF commands stops the execution of the program
 
 ```
 (hbnb) all BaseModel
-\["\[BaseModel] (49faff9a-6318-451f-87b6-910505c55907) {'created\_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903293), 'id': '49faff9a-6318-451f-87b6-910505c55907', 'updated\_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903300)}"]
-
+["[BaseModel] (49faff9a-6318-451f-87b6-910505c55907) {'created_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903293), 'id': '49faff9a-6318-451f-87b6-910505c55907', 'updated_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903300)}"]
 ```
 
 #### update example
 
 ```
-(hbnb) update BaseModel 49faff9a-6318-451f-87b6-910505c55907 first\_name "Betty"
+(hbnb) update BaseModel 49faff9a-6318-451f-87b6-910505c55907 first_name "Betty"
 (hbnb) show BaseModel 49faff9a-6318-451f-87b6-910505c55907
-\[BaseModel\] (49faff9a-6318-451f-87b6-910505c55907) {'first\_name': 'Betty', 'id': '49faff9a-6318-451f-87b6-910505c55907', 'created\_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903293), 'updated\_at': datetime.datetime(2017, 10, 2, 3, 11, 3, 49401)}
+[BaseModel] (49faff9a-6318-451f-87b6-910505c55907) {'first_name': 'Betty', 'id': '49faff9a-6318-451f-87b6-910505c55907', 'created_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903293), 'updated_at': datetime.datetime(2017, 10, 2, 3, 11, 3, 49401)}
 ```
 
 ## :octocat: Contributors 
-[@AndresHugueth - Github](https://github.com/andreshugueth) - [@RonnieBarrios - Github](https://github.com/ronniebm)
+[@Andres Hugueth - Github](https://github.com/andreshugueth) - [@Ronnie Barrios - Github](https://github.com/ronniebm)
 

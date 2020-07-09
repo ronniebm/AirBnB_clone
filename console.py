@@ -112,6 +112,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances
         based or not on the class name.
         Ex: $ all BaseModel
+        Ex: $ all
         """
         args = line.split()
         objects = models.storage.all()

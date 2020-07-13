@@ -74,15 +74,15 @@ section.places article{
 }
 
 .max_guest {
-	background-image: url(/web_static/images/guest.png);
+	background-image: url(../images/guest.png);
 }
 
 .number_rooms {
-	background-image: url(/web_static/images/bed.png);
+	background-image: url(../images/bed.png);
 }
 
 .number_bathrooms {
-	background-image: url(/web_static/images/bath.png);
+	background-image: url(../images/bath.png);
 }
 
 .information p {
@@ -134,7 +134,7 @@ section.places article{
 	list-style: none;
 	list-style-image: none;
 	width: 100%;
-	background-image: url("/web_static/images/tv.png");
+	background-image: url("../images/tv.png");
     background-repeat: no-repeat;
 	background-position: 0px;
 	background-position-y: 4px;
@@ -146,7 +146,7 @@ section.places article{
 	list-style: none;
 	list-style-image: none;
 	width: 100%;
-	background-image: url("/web_static/images/wifi.png");
+	background-image: url("../images/wifi.png");
     background-repeat: no-repeat;
 	background-position: 0px;
 	background-position-y: 4px;
@@ -158,7 +158,7 @@ section.places article{
 	list-style: none;
 	list-style-image: none;
 	width: 100%;
-	background-image: url("/web_static/images/pet.png");
+	background-image: url("../images/pet.png");
     background-repeat: no-repeat;
 	background-position: 0px;
 	background-position-y: 5px;

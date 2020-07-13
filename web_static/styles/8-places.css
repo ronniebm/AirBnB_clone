@@ -74,15 +74,15 @@ section.places article{
 }
 
 .max_guest {
-	background-image: url(/web_static/images/guest.png);
+	background-image: url(../images/guest.png);
 }
 
 .number_rooms {
-	background-image: url(/web_static/images/bed.png);
+	background-image: url(../images/bed.png);
 }
 
 .number_bathrooms {
-	background-image: url(/web_static/images/bath.png);
+	background-image: url(../images/bath.png);
 }
 
 .information p {

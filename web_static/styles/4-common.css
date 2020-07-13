@@ -9,7 +9,5 @@ body {
 
 .container {
 	max-width: 1000px;
-	margin: auto; /* Horizontal centering */
-	margin-top: 30px;
-	margin-bottom: 30px;
+	margin: 60px auto;
 }

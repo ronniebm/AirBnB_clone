@@ -34,7 +34,7 @@ button:hover {
 	/* .location position settings: */
 	float: left;
 	text-align: left;
-	line-height: 5.7px;
+	line-height: 5px;
 }
 
 .amenities {
@@ -44,7 +44,7 @@ button:hover {
 	/* .amenities position settings: */
 	float: left;
 	text-align: left;
-	line-height: 5.7px;
+	line-height: 5px;
 }
 
 .locations h3, .amenities h3 {
